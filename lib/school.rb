@@ -1,30 +1,28 @@
-# code here!
 class School
-#defines the setter and getter
-  attr_accessor :grade
-    #defines only the getter
-  attr_reader :roster, :name
-
-ROSTER = {}
+  #defines only the getter
+  attr_reader :roster, :school
   # Create empty roster
-  def initialize(roster)
-    @roster = roster
-    #@roster= {}
+  def initialize(school)
+    @roster = {}
+    @school = school
   end
 
-  def add_student (name, grade)
-    @name = name
-    @grade = grade
-
-
-#-- create an if, if grade is already in roster, just assign the name to assocaiated key
-
-    # create a key for @grade
-    @roster[@grade] = grade
-
-    #value will be @name
-    @roster[@grade] << name
+  def add_student(student_name, grade)
+    if !@roster[grade].is_a?(Array)
+      @roster[grade] = []
+    end
+    @roster[grade] << student_name
   end
 
+  def grade(grade)
+   @roster[grade]
+  end
 
+  def sort
+
+    roster.map do |grade, name|
+     @roster[grade] = name.sort
+   end
+    @roster
+  end
 end
